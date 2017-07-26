@@ -201,3 +201,47 @@ strong {
 #box-right {
   height: 50px;
 }
+
+/**
+ * Accordion
+ */
+
+button.accordionTitle {
+    background-color: #F2F2F2;
+    cursor: pointer;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    transition: 0.5s;
+}
+
+button.accordionTitle.active, button.accordionTitle:hover {
+    background-color: #ddd; /*UPDATE THIS*/
+}
+
+div.accordionText {
+    padding: 0 15px 0 15px;
+    padding-top: 0;
+    overflow: hidden;
+    max-height: 0;
+    transition: padding-top 0.3s, max-height 0.3s;
+    background-color: #F7F7F7
+}
+
+.accordionIcon {
+    display: block;
+    height: 25px;
+    margin: 0 auto;
+}
+
+.accordionIconContainer {
+    float:right;
+    width: 50px;
+}
+
+.accordionImg {
+    margin: 0 auto;
+    width: 100%;
+}
+
+

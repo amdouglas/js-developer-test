@@ -99,3 +99,27 @@ jQuery(
 			);
 		}
 );
+
+//Accordion shizzle
+$(document).ready(function() {
+    var titleElements = document.getElementsByClassName("accordionTitle");
+    var i =0;
+    
+    do {
+        titleElements[i].onclick = function(){
+            this.classList.toggle("active");
+            //show and hide the text
+            var textElement = this.nextElementSibling;
+            if (textElement.style.maxHeight) {
+                textElement.style.maxHeight = null;
+                textElement.style.paddingTop = null;
+            } else {
+                textElement.style.maxHeight = textElement.scrollHeight + "px";
+                textElement.style.paddingTop = 15 + "px";
+            }
+        }
+        i++;
+    } while (i<titleElements.length);
+
+
+});
