@@ -22,63 +22,23 @@ jQuery(
 			 * A new instance of the content parser using the content JSON file
 			 */
 			var resContent = new Content( 'app/data/content.json' );
-
-			/**
-			 * Populate the header
-			 */
-			var populateHeader = function() {
-				var strHeaderSource = $( '#header-template' ).html(),
-						resHeaderTemplate = Handlebars.compile( strHeaderSource ),
-						strHeaderHTML = resHeaderTemplate( resContent.getItem( 'header' ) );
-
-				$( '#header' ).html( strHeaderHTML );
-			};
-
-			/**
-			 * Populate the tasks
-			 */
-			var populateTasks = function() {
-				var strTaskSource = $( '#task-template' ).html(),
-						resTasksTemplate = Handlebars.compile( strTaskSource ),
-						strTasksHTML = resTasksTemplate( resContent.getItem( 'tasks' ) );
-
-				$( '#tasks' ).append( strTasksHTML );
-			};
-
-			/**
-			 * Populate the content
-			 */
-			var populateContent = function() {
-				var strContentSource = $( '#content-template' ).html(),
-						resContentTemplate = Handlebars.compile( strContentSource ),
-						strContentHTML = resContentTemplate( resContent.getItem( 'content' ) );
-
-				$( '#content' ).append( strContentHTML );
-			};
             
-            /**
-			 * Populate the accordion
-			 */
-			var populateAccordion = function() {
-				var strAccordionSource = $( '#accordion-template' ).html(),
-						resAccordionTemplate = Handlebars.compile( strAccordionSource ),
-						strAccordionHTML = resAccordionTemplate( resContent.getItem( 'accordion' ) );
-
-				$( '#accordion' ).append( strAccordionHTML );
-                animateCallback();
-			};
-
-			/**
-			 * Populate the documentation links
-			 */
-			var populateDocumentation = function() {
-				var strContentSource = $( '#documentation-template' ).html(),
-						resContentTemplate = Handlebars.compile( strContentSource ),
-						strContentHTML = resContentTemplate( resContent.getItem( 'docs' ) );
-
-				$( '#documentation' ).append( strContentHTML );
-			};
-
+            //TO DO:
+            //Figure out what needs to be passed in (template elemtn and ID)
+            //create a function template
+            //iterate over the template
+            
+            var populateTemplates = function (id, templateName) {
+                try {
+                    var strSource = $( id + '-template' ).html(),
+						resTemplate = Handlebars.compile( strSource ),
+						strHTML = resTemplate( resContent.getItem( templateName ) );
+                    $( id ).append( strHTML );
+                } catch(e) {
+                    console.log('The ID: ' + id + ' is not valid: ' + e);
+                }
+            };
+            
 			/**
 			 * Register a Handlebars helper for the difficulty stars
 			 */
@@ -101,20 +61,22 @@ jQuery(
 			/**
 			 * When the content file is ready, actually populate the content
 			 */
+            
 			resContent.onReady(
 					function() {
-						populateHeader();
-						populateTasks();
-						populateContent();
-                        populateAccordion();
-						populateDocumentation();
+						populateTemplates('#header', 'header');
+                        populateTemplates('#tasks', 'tasks');
+                        populateTemplates('#content', 'content');
+                        populateTemplates('#accordion', 'accordion');
+                        animateAccordion();
+                        populateTemplates('#documentation', 'docs');
 					}
 			);
 		}
 );
 
 //Accordion shizzle 
-function animateCallback () {
+function animateAccordion () {
     var titleElements = document.getElementsByClassName("accordionTitle");
     var i =0;
     
