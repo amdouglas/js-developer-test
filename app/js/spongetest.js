@@ -55,6 +55,18 @@ jQuery(
 
 				$( '#content' ).append( strContentHTML );
 			};
+            
+            /**
+			 * Populate the accordion
+			 */
+			var populateAccordion = function() {
+				var strAccordionSource = $( '#accordion-template' ).html(),
+						resAccordionTemplate = Handlebars.compile( strAccordionSource ),
+						strAccordionHTML = resAccordionTemplate( resContent.getItem( 'accordion' ) );
+
+				$( '#accordion' ).append( strAccordionHTML );
+                animateCallback();
+			};
 
 			/**
 			 * Populate the documentation links
@@ -94,14 +106,15 @@ jQuery(
 						populateHeader();
 						populateTasks();
 						populateContent();
+                        populateAccordion();
 						populateDocumentation();
 					}
 			);
 		}
 );
 
-//Accordion shizzle
-$(document).ready(function() {
+//Accordion shizzle 
+function animateCallback () {
     var titleElements = document.getElementsByClassName("accordionTitle");
     var i =0;
     
@@ -120,6 +133,4 @@ $(document).ready(function() {
         }
         i++;
     } while (i<titleElements.length);
-
-
-});
+};

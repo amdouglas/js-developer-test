@@ -27,30 +27,7 @@
 </div>
 <div class="grid-container">
   <section class="grid-50">
-      
-      
-    <div>
-        <h2>Hello</h2>
-        <button class="accordionTitle"><h5>About Me<div class='accordionIconContainer'><img class='accordionIcon' src='app/images/info.png'></div></h5></button>
-        <div class="accordionText">
-          <p>I'm Ali, I currently work as an Optimization Analyst and Front End Developer in the Oil &amp; Gas industry. I have an MEng degree in Chemical Engineering and I am passionate about programming, learning and being challenged.</p>
-        </div>
-
-        <button class="accordionTitle"><h5>Photo<div class='accordionIconContainer'><img class='accordionIcon' src='app/images/pic.png'></div></h5></button>
-        <div class="accordionText">
-          <p><img class='accordionImg' src='app/images/me.png' /></p>
-        </div>
-
-        <button class="accordionTitle"><h5>Links<div class='accordionIconContainer'><img class='accordionIcon' src='app/images/link.png'></div></h5></button>
-        <div class="accordionText">
-            <p>
-                <a href='https://amdportfolio-619c7.firebaseapp.com/'>Portfolio</a><br /> 
-                <a href='https://www.linkedin.com/in/alistair-douglas-a8451682/'>LinkedIn</a><br />
-            </p>
-        </div>
-    </div>
-      
-      
+    <div id='accordion'></div> 
     <article id="content"></article>
     <noscript>
       <h1>You must enable JavaScript in order to view this page.</h1>
@@ -77,6 +54,28 @@
   <div class="grid-40 align-right">
     <p><em>Bonjour, my name is<br></em><strong>{{{myname}}}</strong></p>
   </div>
+</script>
+      
+<!-- Accordion Handlebars template -->   
+<script id="accordion-template" type="text/x-handlebars-template">
+        <h2>{{title}}</h2>
+        {{#each accordionBoxes}}
+        <button class="accordionTitle"><h5>{{accordionTitle}}<div class='accordionIconContainer'><img class='accordionIcon' src='{{accordionIconUrl}}'></div></h5></button>
+        <div class="accordionText">
+            <p>{{#if accordionText}}
+                    {{accordionText}}
+               {{/if}}
+               {{#if accordionImg}}
+                    <img class='accordionImg' src='{{accordionImg}}' />
+               {{/if}}
+               {{#if accordionLinks}}
+                    {{#each accordionLinks}}
+                        <a href='{{url}}'>{{name}}</a><br /> 
+                    {{/each}}
+               {{/if}}
+            </p>
+        </div>
+        {{/each}}
 </script>
 
 <!-- Task item Handlebars template -->
