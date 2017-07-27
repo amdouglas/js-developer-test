@@ -1,4 +1,26 @@
 {
+  "templates" : [
+      {
+        "name": "header",
+        "selector": "#header"
+      },
+      {
+        "name": "tasks",
+        "selector": "#tasks"
+      },
+      {
+        "name": "content",
+        "selector": "#content"
+      },
+      {
+        "name": "accordion",
+        "selector": "#accordion"
+      },
+      {
+        "name": "docs",
+        "selector": "#documentation"
+      }
+  ],
   "header": {
     "title": "Sponge <i>UK</i> Developer Test",
     "subtitle": "May the force be with you",
@@ -10,7 +32,7 @@
             {
                 "accordionTitle": "About Me",
                 "accordionIconUrl": "app/images/info.png",
-                "accordionText": "Yay this works! I'm Ali, I currently work as an Optimization Analyst and Front End Developer in the Oil & Gas industry. I have an MEng degree in Chemical Engineering and I am passionate about programming, learning and being challenged."
+                "accordionText": "Hi, I'm Ali. I currently work as an Optimization Analyst and Front End Developer in the Oil & Gas industry. I have an MEng degree in Chemical Engineering and I am passionate about programming, learning and being challenged and am hoping to shift my career to being a developer in the e-learning industry."
             },
             {
                 "accordionTitle": "Photo",

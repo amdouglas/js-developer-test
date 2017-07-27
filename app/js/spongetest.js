@@ -17,26 +17,34 @@
 */
 
 jQuery(
-		function( $ ) {
+		function ( $ ) {
 			/**
 			 * A new instance of the content parser using the content JSON file
 			 */
 			var resContent = new Content( 'app/data/content.json' );
             
-            //TO DO:
-            //Figure out what needs to be passed in (template elemtn and ID)
-            //create a function template
-            //iterate over the template
-            
-            var populateTemplates = function (id, templateName) {
-                try {
-                    var strSource = $( id + '-template' ).html(),
-						resTemplate = Handlebars.compile( strSource ),
-						strHTML = resTemplate( resContent.getItem( templateName ) );
-                    $( id ).append( strHTML );
-                } catch(e) {
-                    console.log('The ID: ' + id + ' is not valid: ' + e);
-                }
+            /**
+             * Animation after dom elements created
+             */
+            function animateAccordion () {
+                var titleElements = document.getElementsByClassName("accordionTitle");
+                var i =0;
+
+                do {
+                    titleElements[i].onclick = function(){
+                        this.classList.toggle("active");
+                        //show and hide the text
+                        var textElement = this.nextElementSibling;
+                        if (textElement.style.maxHeight) {
+                            textElement.style.maxHeight = null;
+                            textElement.style.paddingTop = null;
+                        } else {
+                            textElement.style.maxHeight = textElement.scrollHeight + "px";
+                            textElement.style.paddingTop = 15 + "px";
+                        }
+                    }
+                    i++;
+                } while (i<titleElements.length);
             };
             
 			/**
@@ -61,38 +69,14 @@ jQuery(
 			/**
 			 * When the content file is ready, actually populate the content
 			 */
-            
 			resContent.onReady(
 					function() {
-						populateTemplates('#header', 'header');
-                        populateTemplates('#tasks', 'tasks');
-                        populateTemplates('#content', 'content');
-                        populateTemplates('#accordion', 'accordion');
+                        var templates = resContent.getItem( "templates" );
+                        $.each(templates, function (index, template) {
+                            resContent.populateTemplates(template.selector, template.name, resContent);
+                        });
                         animateAccordion();
-                        populateTemplates('#documentation', 'docs');
 					}
 			);
 		}
 );
-
-//Accordion shizzle 
-function animateAccordion () {
-    var titleElements = document.getElementsByClassName("accordionTitle");
-    var i =0;
-    
-    do {
-        titleElements[i].onclick = function(){
-            this.classList.toggle("active");
-            //show and hide the text
-            var textElement = this.nextElementSibling;
-            if (textElement.style.maxHeight) {
-                textElement.style.maxHeight = null;
-                textElement.style.paddingTop = null;
-            } else {
-                textElement.style.maxHeight = textElement.scrollHeight + "px";
-                textElement.style.paddingTop = 15 + "px";
-            }
-        }
-        i++;
-    } while (i<titleElements.length);
-};

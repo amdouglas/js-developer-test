@@ -40,6 +40,20 @@
 							);
 						}
 				);
+                
+                /**
+				 * Function to populate templates
+				 */
+                this.populateTemplates = function (id, templateName, resContent) {
+                    try {
+                        var strSource = $( id + '-template' ).html(),
+                            resTemplate = Handlebars.compile( strSource ),
+                            strHTML = resTemplate( resContent.getItem( templateName ) );
+                        $( id ).append( strHTML );
+                    } catch(e) {
+                        console.log('The ID: ' + id + ' is not valid: ' + e);
+                    }
+                };
 
 				/**
 				 * Register a function to execute once loaded
