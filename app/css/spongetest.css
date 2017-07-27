@@ -192,14 +192,29 @@ strong {
  */
 #boxes {
   padding: 40px;
+  overflow: auto;
+  position: relative;
+  font-size: 1.5em;
 }
 
 #box-left {
   height: 50px;
+  width: 210px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -1;
 }
 
-#box-right {
-  height: 50px;
+#box-right{
+    width: 50%;
+    float: right;
+}
+
+#box-right:before{
+    content:'';
+    padding: 50% 0; 
+    display:inline-block;
 }
 
 /**
