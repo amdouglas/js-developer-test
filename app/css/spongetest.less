@@ -1,0 +1,271 @@
+@charset "UTF-8";
+@import "https://fonts.googleapis.com/css?family=Roboto+Mono:300|Roboto:300,300i,500,500i";
+/*
+ =====================================================
+
+   _____                                _    _ _  __
+  / ____|                              | |  | | |/ /
+ | (___  _ __   ___  _ __   __ _  ___  | |  | | ' /
+  \___ \| '_ \ / _ \| '_ \ / _` |/ _ \ | |  | |  <
+  ____) | |_) | (_) | | | | (_| |  __/ | |__| | . \
+ |_____/| .__/ \___/|_| |_|\__, |\___|  \____/|_|\_\
+        | |                 __/ |
+        |_|                |___/
+
+=====================================================
+ SPONGE UK DEVELOPER TEST
+ Main CSS
+=====================================================
+
+/**
+ * Variables
+ */
+
+@main-font-color: #212D35;
+@sponge-red: #F9423A;
+@sponge-yellow: #FFB400;
+@white: #FFF;
+@star-grey: #7E7772;
+@task-background: #F2F2F2;
+@off-white: #D4D4D4;
+@hover-grey: #DDDDDD;
+@accordion-white: #F7F7F7;
+
+
+
+/**
+ * LESS
+ */
+body {
+	min-width: 320px;
+    
+	font-family: "Roboto", serif;
+	color: @main-font-color;
+	font-weight: 300;
+}
+
+#header-wrapper {
+	position: relative;
+    
+	background: @sponge-red;
+    
+	z-index: 2;
+}
+
+#header {
+	padding-top: 60px;
+	padding-bottom: 45px;
+    
+	color: @white;
+    
+	img {
+		margin-right: auto;
+		margin-bottom: 30px;
+		margin-left: auto;
+        
+		display: block;
+	}
+    
+	h1 {
+		color: @white;
+		+ {
+			p {
+				font-size: 1.8em;
+			}
+		}
+	}
+}
+
+#content {
+	padding-top: 30px;
+	padding-bottom: 30px;
+    
+	img {
+		width: 100%;
+	}
+}
+
+#tasks {
+	padding-top: 30px;
+	padding-right: 20px;
+	padding-bottom: 50px;
+	padding-left: 20px;
+    
+	position: relative;
+    
+	background-color: @task-background;
+    
+	counter-reset: tasks;
+    
+	z-index: 1;
+    
+	article {
+		counter-increment: tasks;
+        
+		h5 {
+			color: @sponge-red;
+            
+			&::before {
+				min-width: 0.75em;
+				padding-right: 0.5em;
+                
+				display: inline-block;
+                
+				color: @main-font-color;
+				font-weight: 300;
+				vertical-align: text-bottom;
+                
+				content: counter(tasks) ".";
+			}
+            
+			.difficulty {
+				margin-left: 1.5em;
+                
+				display: inline-block;
+                
+				float: right;
+                
+				color: @sponge-yellow;
+				font-size: 0.8em;
+				white-space: nowrap;
+                
+				.fa {
+					margin-left: 0.1em;
+				}
+                
+				.fa-star-o {
+					color: @star-grey;
+				}
+			}
+		}
+	}
+}
+
+#footer-wrapper {
+	padding-top: 30px;
+	padding-bottom: 10px;
+    
+	position: relative;
+    
+	color: @white;
+    
+	background-color: @main-font-color;
+    
+	z-index: 2;
+}
+
+#footer {
+	a {
+		color: inherit;
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: 300;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: @sponge-red;
+}
+
+p,
+ul, 
+ol {
+	font-size: 1.5em;
+}
+
+p,
+li {
+	font-size: 1.5em;
+	code {
+		padding-right: 0.2em;
+		padding-left: 0.2em;
+        
+		line-height: 1.35;
+		vertical-align: baseline;
+		font-size: 0.9em;
+        
+		background-color: @off-white;
+        
+		outline: none;
+	}
+}
+
+code, 
+pre {
+	font-family: "Roboto Mono", monospace;
+	font-weight: 300;
+}
+
+strong {
+	font-weight: 500;
+}
+
+/**
+ * Styles to make the boxes actually visible to start
+ */
+#boxes {
+	padding: 40px;
+}
+
+#box-left {
+	height: 50px;
+}
+
+#box-right {
+	height: 50px;
+}
+
+/**
+ * Accordion
+ */
+
+button.accordionTitle {
+	background-color: @task-background;
+	cursor: pointer;
+	padding: 10px;
+	width: 100%;
+	border: none;
+	transition: 0.5s;
+	&:hover {
+		background-color: @hover-grey;
+	}
+}
+
+button.accordionTitle.active {
+	background-color: @hover-grey;
+}
+
+div.accordionText {
+	padding: 0 15px 0 15px;
+	padding-top: 0;
+	overflow: hidden;
+	max-height: 0;
+	transition: padding-top 0.3s, max-height 0.3s;
+	background-color: @accordion-white;
+}
+
+.accordionIcon {
+	display: block;
+	height: 25px;
+	margin: 0 auto;
+}
+
+.accordionIconContainer {
+	float: right;
+	width: 50px;
+}
+
+.accordionImg {
+	margin: 0 auto;
+	width: 100%;
+}

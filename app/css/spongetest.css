@@ -216,7 +216,7 @@ button.accordionTitle {
 }
 
 button.accordionTitle.active, button.accordionTitle:hover {
-    background-color: #ddd; /*UPDATE THIS*/
+    background-color: #ddd;
 }
 
 div.accordionText {
