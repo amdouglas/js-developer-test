@@ -18,9 +18,13 @@
 
 jQuery(
 		function ( $ ) {
+            
+            import ContentInstance from 'lib/content.js';
+            
 			/**
 			 * A new instance of the content parser using the content JSON file
 			 */
+            
 			var resContent = new Content( 'app/data/content.json' );
             
             /**
@@ -69,6 +73,7 @@ jQuery(
 			/**
 			 * When the content file is ready, actually populate the content
 			 */
+            
 			resContent.onReady(
 					function() {
                         var templates = resContent.getItem( "templates" );

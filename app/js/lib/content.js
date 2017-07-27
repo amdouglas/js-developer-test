@@ -17,15 +17,15 @@
 */
 
 (function( window, $ ) {
-			var ContentInstance = function( strDataLocation ) {
-				var objContent = {},
-						arrOnReady = [],
-						blReady = false;
-
-				/**
-				 * Get the JSON file
-				 */
-				$.getJSON( strDataLocation,
+    
+            export class ContentInstance {
+                
+                constructor (strDataLocation) {
+                    this.objContent = {},
+                        arrOnReady = [],
+                        blReady = false;
+                    
+                    $.getJSON( strDataLocation,
 						function( objResponse ) {
 							objContent = objResponse;
 							blReady = true;
@@ -39,12 +39,13 @@
 									}
 							);
 						}
-				);
+				    );
+                }
                 
-                /**
+                 /**
 				 * Function to populate templates
 				 */
-                this.populateTemplates = function (id, templateName, resContent) {
+                populateTemplates( id, templateName, resContent ) {
                     try {
                         var strSource = $( id + '-template' ).html(),
                             resTemplate = Handlebars.compile( strSource ),
@@ -54,32 +55,26 @@
                         console.log('The ID: ' + id + ' is not valid: ' + e);
                     }
                 };
-
-				/**
+                
+                /**
 				 * Register a function to execute once loaded
 				 */
-				this.onReady = function( funDoOnReady ) {
+                onReady( funDoOnReady ) {
 					if( blReady ) {
 						funDoOnReady.call();
 					} else {
 						arrOnReady.push( funDoOnReady );
 					}
 				};
-
-				/**
+                
+                /**
 				 * Get an item from the content data
 				 */
-				this.getItem = function( intItem ) {
+				getItem( intItem ) {
 					return objContent[intItem];
 				};
-
-				return this;
-			};
-
-			/**
-			 * Add the ContentInstance method to the global scope
-			 */
-			window.Content = ContentInstance;
+            }
+    
 		})( window, jQuery );
 
 /*
